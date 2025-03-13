@@ -3,6 +3,7 @@ plugins {
     groovy
 }
 
+
 // follow the structure as dictated by Jenkins:
 sourceSets {
     main {
@@ -36,13 +37,16 @@ dependencies {
     implementation("org.jenkins-ci.main:jenkins-core:2.500")
     implementation("org.jenkins-ci.plugins.workflow:workflow-support:961.v51869f7b_d409@jar")
     implementation("org.jenkins-ci.plugins.workflow:workflow-api:1363.v03f731255494@jar")
-    implementation("io.jenkins.blueocean:blueocean-pipeline-api-impl:1.27.17@jar")
     implementation("org.jenkins-ci.plugins.workflow:workflow-job:1505.vea_4b_20a_4a_495@jar")
+
+
+    implementation("io.jenkins.blueocean:blueocean-pipeline-api-impl:1.27.17@jar")
+    implementation("io.jenkins.blueocean:blueocean-rest-impl:1.27.17@jar")
+    implementation("io.jenkins.blueocean:blueocean-rest:1.27.17@jar")
 //
 //    implementation(platform("io.jenkins.tools.bom:bom-2.462.x:3435.v238d66a_043fb_"))
 //    implementation(platform("io.jenkins.tools.bom:bom-2.462.x:3435.v238d66a_043fb_"))
 //    implementation("io.jenkins.tools.bom:bom-2.479.x:4228.v0a_71308d905b_")
-//    implementation("io.jenkins.blueocean:blueocean-rest-impl:1.27.17@jar")
 //    val staplerGAV = "org.kohsuke.stapler:stapler:1.255"
 //    implementation(staplerGAV)
 //    annotationProcessor(staplerGAV)

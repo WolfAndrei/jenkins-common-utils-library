@@ -5,11 +5,33 @@ import com.example.JenkinsStageVisitor
 pipeline {
     agent any
     stages {
-        stage('Demo') {
+        stage('SuccessStage') {
             steps {
-                script {
-                    def visitor = new JenkinsStageVisitor()
-                }
+                echo 'Success'
+            }
+        }
+        stage('FailedStage') {
+            steps {
+                readFile 'dfgkjsdffj'
+            }
+        }
+        stage('SkippedStage') {
+            steps {
+                echo 'Skipped because of error in FailedStage'
+            }
+        }
+    }
+
+    post {
+        failure {
+            script {
+                // Print information about all failed stages
+                def visitor = new JenkinsStageVisitor()
+                def failedStages = visitor.getFailedStages( currentBuild )
+                echo "Failed stages:\n" + failedStages.join('\n')
+
+                // To get a list of just the stage names:
+                //echo "Failed stage names: " + failedStages.displayName
             }
         }
     }

@@ -9,6 +9,11 @@
 
 rootProject.name = "jsl-example"
 
-dependencyResolutionManagement {
-
+pluginManagement {
+    repositories {
+        mavenCentral()
+        maven {
+            url = uri("https://repo.jenkins-ci.org/releases/")
+        }
+    }
 }
