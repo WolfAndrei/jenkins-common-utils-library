@@ -38,14 +38,16 @@ dependencies {
     implementation("org.jenkins-ci.plugins.workflow:workflow-api:1363.v03f731255494@jar")
     implementation("io.jenkins.blueocean:blueocean-pipeline-api-impl:1.27.17@jar")
     implementation("org.jenkins-ci.plugins.workflow:workflow-job:1505.vea_4b_20a_4a_495@jar")
-
-    implementation("io.jenkins.tools.bom:bom-2.479.x:4228.v0a_71308d905b_")
-    implementation("io.jenkins.blueocean:blueocean-rest-impl:1.27.17@jar")
-    val staplerGAV = "org.kohsuke.stapler:stapler:1.255"
-    implementation(staplerGAV)
-    annotationProcessor(staplerGAV)
-    implementation("org.jenkins-ci.plugins.workflow:workflow-step-api:2.19@jar")
-    implementation("org.jenkins-ci.plugins:pipeline-utility-steps:2.2.0@jar")
+//
+//    implementation(platform("io.jenkins.tools.bom:bom-2.462.x:3435.v238d66a_043fb_"))
+//    implementation(platform("io.jenkins.tools.bom:bom-2.462.x:3435.v238d66a_043fb_"))
+//    implementation("io.jenkins.tools.bom:bom-2.479.x:4228.v0a_71308d905b_")
+//    implementation("io.jenkins.blueocean:blueocean-rest-impl:1.27.17@jar")
+//    val staplerGAV = "org.kohsuke.stapler:stapler:1.255"
+//    implementation(staplerGAV)
+//    annotationProcessor(staplerGAV)
+//    implementation("org.jenkins-ci.plugins.workflow:workflow-step-api:2.19@jar")
+//    implementation("org.jenkins-ci.plugins:pipeline-utility-steps:2.2.0@jar")
 //    testImplementation("org.spockframework:spock-core:1.3-groovy-2.5")
 //    testImplementation("junit:junit:4.12")
 //    testImplementation("com.lesfurets:jenkins-pipeline-unit:1.1")
