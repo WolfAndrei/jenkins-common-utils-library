@@ -23,9 +23,6 @@ List<Map> getStepResults() {
             'downstream': [:]
 
             ]
-            if (row.node.getAction(LogStorageAction)) {
-                nodeInfo.url += 'log/'
-            }
 
             for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
                 nodeInfo.downstream["${entry.key}-${entry.value}"] = getStepResults(entry.key, entry.value)
