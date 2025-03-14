@@ -1,18 +1,19 @@
 import hudson.model.FreeStyleBuild
+import hudson.model.Run
 import io.jenkins.blueocean.listeners.NodeDownstreamBuildAction
 import org.jenkinsci.plugins.workflow.support.actions.LogStorageAction
 import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 import org.jenkinsci.plugins.workflow.support.visualization.table.FlowGraphTable
 
 List<Map> call() {
-    return getStepResults(currentBuild)
+    return getStepResults(currentBuild.rawBuild)
 }
 
 
-List<Map> getStepResults(RunWrapper build) {
+List<Map> getStepResults(Run<?,?> build) {
     def result = []
 
-    FlowGraphTable t = new FlowGraphTable(build.rawBuild.execution)
+    FlowGraphTable t = new FlowGraphTable(build.execution)
     t.build()
     for (def row in t.rows) {
         if (row.node.error) {
@@ -28,9 +29,12 @@ List<Map> getStepResults(RunWrapper build) {
             }
 
             for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
-                def exe = new RunWrapper(Jenkins.instance.getItemByFullName(entry.key).getLastBuild(), false)
+                FreeStyleBuild
+
+
+//                Hudson.instance.getAllItems(org.jenkinsci.plugins.workflow.job.WorkflowJob)
                 nodeInfo.downstream["${entry.key}-${entry.value}"] = getStepResults(
-                    exe
+                    Jenkins.instance.getItemByFullName(entry.key).getLastBuild()
                 )
             }
             result << nodeInfo
