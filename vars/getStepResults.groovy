@@ -28,7 +28,7 @@ List<Map> getStepResults(RunWrapper build) {
             }
 
             for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
-                def exe = Jenkins.instance.getItemByFullName(entry.key).runner.execution.getBuilds()[0].execution
+                def exe = new RunWrapper(Jenkins.instance.getItemByFullName(entry.key).getLastBuild(), false)
                 nodeInfo.downstream["${entry.key}-${entry.value}"] = getStepResults(
                     exe
                 )
