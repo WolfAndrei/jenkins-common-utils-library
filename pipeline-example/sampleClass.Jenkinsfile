@@ -28,8 +28,7 @@ pipeline {
     post {
         failure {
             script {
-                def failedStages = getStepResults()
-                echo failedStages.join('\n')
+                getStepResults()
             }
         }
     }
