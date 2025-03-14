@@ -1,5 +1,6 @@
 package com.example
 
+import com.cloudbees.groovy.cps.NonCPS
 import jenkins.model.Jenkins
 import org.jenkinsci.plugins.workflow.job.WorkflowJob
 import org.jenkinsci.plugins.workflow.job.WorkflowRun
@@ -50,7 +51,7 @@ class JenkinsStageVisitor {
 //        return getStageResults(build).findAll { it.result == 'FAILURE' }
 //    }
 
-
+    @NonCPS
     List<Map> getFailedStages(RunWrapper build ) {
         def thisJob = Jenkins.instance.getItemByFullName(JOB_NAME).getLastBuild()
 
@@ -61,6 +62,7 @@ class JenkinsStageVisitor {
         return []
     }
 
+    @NonCPS
     List<Map> getStepResults(WorkflowRun build) {
         def result = []
         FlowGraphTable t = new FlowGraphTable(build.execution)
@@ -88,6 +90,7 @@ class JenkinsStageVisitor {
         return result
     }
 
+    @NonCPS
     Map getDownStreamJobAndBuildNumber(def node) {
         Map downStreamJobsAndBuilds = [:]
         for (def action in node.getActions(NodeDownstreamBuildAction)) {
