@@ -48,14 +48,8 @@ class JenkinsStageVisitor {
 //        return getStageResults(build).findAll { it.result == 'FAILURE' }
 //    }
 
-    WorkflowRun build;
 
-    JenkinsStageVisitor(WorkflowRun build) {
-     this.build = build
-    }
-
-
-    List<Map> getStepResults() {
+    List<Map> getStepResults(WorkflowRun build) {
         def result = []
         FlowGraphTable t = new FlowGraphTable(build.execution)
         t.build()
