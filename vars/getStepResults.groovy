@@ -28,7 +28,7 @@ List<Map> getStepResults(RunWrapper build) {
             }
 
             for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
-                FreeStyleBuild exe = Jenkins.instance.getItemByFullName(entry.key).runner.execution
+                def exe = Jenkins.instance.getItemByFullName(entry.key).runner.execution.getBuilds()[0].execution
                 nodeInfo.downstream["${entry.key}-${entry.value}"] = getStepResults(
                     exe
                 )
