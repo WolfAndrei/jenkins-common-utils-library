@@ -1,6 +1,6 @@
 @Library('jenkins-common-utils-library') _
 
-import com.example.JenkinsStageVisitor
+// import com.example.JenkinsStageVisitor
 
 pipeline {
     agent any
@@ -26,8 +26,8 @@ pipeline {
         failure {
             script {
                 // Print information about all failed stages
-                def visitor = new JenkinsStageVisitor()
-                def failedStages = visitor.getStepResults()
+//                 def visitor = new JenkinsStageVisitor()
+                def failedStages = getStepResults()
                 echo failedStages.join('\n')
 //                 echo "Failed stages:\n" + failedStages.join('\n')
 
