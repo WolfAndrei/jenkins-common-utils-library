@@ -28,7 +28,7 @@ List<Map> getStepResults() {
             result << nodeInfo
         }
     }
-    log(result)
+//    log(result)
     return result
 }
 
