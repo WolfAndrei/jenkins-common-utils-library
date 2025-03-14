@@ -51,7 +51,6 @@ class JenkinsStageVisitor {
 //        return getStageResults(build).findAll { it.result == 'FAILURE' }
 //    }
 
-    @NonCPS
     List<Map> getFailedStages(RunWrapper build ) {
         def thisJob = Jenkins.instance.getItemByFullName(JOB_NAME).getLastBuild()
 
@@ -62,10 +61,11 @@ class JenkinsStageVisitor {
         return []
     }
 
-    @NonCPS
-    List<Map> getStepResults(WorkflowRun build) {
+    List<Map> getStepResults() {
         def result = []
-        FlowGraphTable t = new FlowGraphTable(build.execution)
+        def build = currentBuild.getRawBuild()
+        def execution = build.getExecution()
+        FlowGraphTable t = new FlowGraphTable(execution)
         t.build()
         for (def row in t.rows) {
             if (row.node.error) {
@@ -90,7 +90,6 @@ class JenkinsStageVisitor {
         return result
     }
 
-    @NonCPS
     Map getDownStreamJobAndBuildNumber(def node) {
         Map downStreamJobsAndBuilds = [:]
         for (def action in node.getActions(NodeDownstreamBuildAction)) {
