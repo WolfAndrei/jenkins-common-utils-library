@@ -1,21 +1,33 @@
 import hudson.model.FreeStyleBuild
 import hudson.model.Run
 import io.jenkins.blueocean.listeners.NodeDownstreamBuildAction
+import org.jenkinsci.plugins.workflow.graph.FlowGraphWalker
+import org.jenkinsci.plugins.workflow.graphanalysis.DepthFirstScanner
+import org.jenkinsci.plugins.workflow.graphanalysis.FlowNodeVisitor
 import org.jenkinsci.plugins.workflow.job.WorkflowJob
 import org.jenkinsci.plugins.workflow.support.actions.LogStorageAction
 import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 import org.jenkinsci.plugins.workflow.support.visualization.table.FlowGraphTable
 
 List<Map> call() {
-    return getStepResults(currentBuild.rawBuild)
+    return getStepResults()
 }
 
-List<Map> getStepResults(Run<?,?> build) {
+List<Map> getStepResults() {
     def result = []
 
-    FlowGraphTable t = new FlowGraphTable(build.execution)
+    FlowGraphWalker walker = new FlowGraphWalker(currentBuild.build.rawBuild.execution)
+
+    walker.iterator().forEachRemaining {
+        println(it.displayName)
+        println(it.url)
+    }
+
+    FlowGraphTable t = new FlowGraphTable()
     t.build()
     for (def row in t.rows) {
+
+
         if (row.node.error) {
             def nodeInfo = [
                 'name': "${row.node.displayName}",
@@ -28,12 +40,10 @@ List<Map> getStepResults(Run<?,?> build) {
                 nodeInfo.url += 'log/'
             }
 
-            for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
-                Run<?, ?> run = Jenkins.instance.getItemByFullName(entry.key).getLastBuild()
-                 nodeInfo.downstream["${entry.key}-${entry.value}"] = getStepResults(
-                     run
-                )
-            }
+//            for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
+//                Run<?, ?> run = Jenkins.instance.getItemByFullName(entry.key).getLastBuild()
+//                 nodeInfo.downstream["${entry.key}-${entry.value}"] =""
+//            }
             result << nodeInfo
         }
     }
