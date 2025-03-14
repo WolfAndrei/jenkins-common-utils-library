@@ -1,6 +1,7 @@
 package com.example
 
-
+import jenkins.model.Jenkins
+import org.jenkinsci.plugins.workflow.job.WorkflowJob
 import org.jenkinsci.plugins.workflow.job.WorkflowRun
 import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 import org.jenkinsci.plugins.workflow.support.visualization.table.FlowGraphTable
@@ -51,7 +52,13 @@ class JenkinsStageVisitor {
 
 
     List<Map> getFailedStages(RunWrapper build ) {
-        return getStepResults( build ).findAll{ it.result == 'FAILURE' }
+        def thisJob = Jenkins.instanceOrNull.getItemByFullName(JOB_NAME).getLastBuild()
+
+        if (thisJob instanceof WorkflowRun) {
+            return getStepResults( build ).findAll{ it.result == 'FAILURE' }
+        }
+
+        return []
     }
 
     List<Map> getStepResults(WorkflowRun build) {
