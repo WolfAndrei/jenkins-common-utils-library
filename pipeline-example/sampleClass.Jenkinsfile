@@ -28,7 +28,7 @@ pipeline {
     post {
         failure {
             script {
-                getStepResults()
+                getErrorResults()
             }
         }
     }
