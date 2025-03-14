@@ -7,7 +7,7 @@ List<Map> call() {
 
 List<Map> getStepResults() {
     def result = []
-    FlowGraphTable t = new FlowGraphTable(currentBuild.execution)
+    FlowGraphTable t = new FlowGraphTable(currentBuild().execution)
     t.build()
     for (def row in t.rows) {
         if (row.node.error) {
