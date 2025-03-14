@@ -20,13 +20,11 @@ List<Map> getStepResults() {
                 'name': "${row.node.displayName}",
             'url': "${env.JENKINS_URL}${row.node.url}",
             'error': "${row.node.error.error}",
-            'downstream': [:]
-
             ]
 
-            for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
-                nodeInfo.downstream["${entry.key}-${entry.value}"] = getStepResults(entry.key, entry.value)
-            }
+//            for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
+//                nodeInfo.downstream["${entry.key}-${entry.value}"] = getStepResults(entry.key, entry.value)
+//            }
             result << nodeInfo
         }
     }
