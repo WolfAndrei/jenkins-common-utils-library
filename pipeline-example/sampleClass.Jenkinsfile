@@ -10,19 +10,17 @@ pipeline {
                 echo 'Success'
             }
         }
-        stage('FailedStage3') {
-            steps {
-                build(job: 'sayhello', propagate: true)
-            }
-        }
         stage('FailedStage') {
             steps {
-                readFile 'dfgkjsdffj'
+                catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
+                    readFile 'dfgkjsdffj'
+                }
             }
         }
-        stage('SkippedStage') {
+        stage('FailedStage2') {
             steps {
-                echo 'Skipped because of error in FailedStage'
+                echo 'Skipped because of error in FailedStage2'
+                readFile 'dfgkjsdffj'
             }
         }
     }
@@ -30,16 +28,8 @@ pipeline {
     post {
         failure {
             script {
-                // Print information about all failed stages
-//                 def visitor = new JenkinsStageVisitor()
                 def failedStages = getStepResults()
                 echo failedStages.join('\n')
-//                 echo "Failed stages:\n" + failedStages.join('\n')
-
-//                 echo getStepResults().join('\n')
-
-                // To get a list of just the stage names:
-                //echo "Failed stage names: " + failedStages.displayName
             }
         }
     }
