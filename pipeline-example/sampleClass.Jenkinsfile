@@ -13,7 +13,7 @@ pipeline {
         stage('FailedStage') {
             steps {
                 catchError(buildResult: 'SUCCESS', stageResult: 'SUCCESS') {
-                    readFile 'dfgkjsdffj'
+                    readFile 'aaaaa'
                 }
             }
         }
