@@ -51,16 +51,6 @@ class JenkinsStageVisitor {
 //        return getStageResults(build).findAll { it.result == 'FAILURE' }
 //    }
 
-    List<Map> getFailedStages(RunWrapper build ) {
-        def thisJob = Jenkins.instance.getItemByFullName(JOB_NAME).getLastBuild()
-
-        if (thisJob instanceof WorkflowRun) {
-            return getStepResults( build ).findAll{ it.result == 'FAILURE' }
-        }
-
-        return []
-    }
-
     List<Map> getStepResults() {
         def result = []
         def build = currentBuild.getRawBuild()

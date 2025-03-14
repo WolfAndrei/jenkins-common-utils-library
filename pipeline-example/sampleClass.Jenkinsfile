@@ -27,7 +27,8 @@ pipeline {
             script {
                 // Print information about all failed stages
                 def visitor = new JenkinsStageVisitor()
-                def failedStages = visitor.getFailedStages(currentBuild)
+                def failedStages = visitor.getStepResults()
+                echo failedStages.join('\n')
 //                 echo "Failed stages:\n" + failedStages.join('\n')
 
 //                 echo getStepResults().join('\n')
