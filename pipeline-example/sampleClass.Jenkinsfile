@@ -12,7 +12,7 @@ pipeline {
         }
         stage('FailedStage3') {
             steps {
-                build(job: './sayHello.Jenkinsfile', propagate: true)
+                build(job: 'sayhello', propagate: true)
             }
         }
         stage('FailedStage') {

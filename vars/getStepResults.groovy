@@ -4,14 +4,12 @@ import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 import org.jenkinsci.plugins.workflow.support.visualization.table.FlowGraphTable
 
 List<Map> call() {
-    return getStepResults()
+    return getStepResults(currentBuild)
 }
 
 
-List<Map> getStepResults() {
+List<Map> getStepResults(RunWrapper build) {
     def result = []
-
-    RunWrapper build = currentBuild
 
     FlowGraphTable t = new FlowGraphTable(build.rawBuild.execution)
     t.build()
@@ -29,8 +27,9 @@ List<Map> getStepResults() {
             }
 
             for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
-                echo "${Jenkins.instance.getItemByFullName(entry.key).getLastBuild().displayName}"
-                nodeInfo.downstream["${entry.key}-${entry.value}"] = getStepResults(entry.key, entry.value)
+                nodeInfo.downstream["${entry.key}-${entry.value}"] = getStepResults(
+                    Jenkins.instance.getItemByFullName(entry.key).getLastBuild().rawBuild.execution
+                )
             }
             result << nodeInfo
         }
