@@ -10,6 +10,11 @@ pipeline {
                 echo 'Success'
             }
         }
+        stage('FailedStage3') {
+            steps {
+                build(job: './sayHello.Jenkinsfile', propagate: true)
+            }
+        }
         stage('FailedStage') {
             steps {
                 readFile 'dfgkjsdffj'

@@ -21,6 +21,7 @@ List<Map> getStepResults() {
                 'name': "${row.node.displayName}",
                 'url': "${env.JENKINS_URL}${row.node.url}",
                 'error': "${row.node.error.error}",
+                'downstream': [:]
             ]
 
             if (row.node.getAction(LogStorageAction)) {

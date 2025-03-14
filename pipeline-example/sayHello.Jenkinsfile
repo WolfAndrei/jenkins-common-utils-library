@@ -1,6 +1,5 @@
-@Library('jenkins-shared-library')_
-
- stage('Demo') {
-     echo 'Hello world'
-     sayHello('slurm')
- }
+stage('FailedStage2') {
+    steps {
+        readFile 'aaaaa'
+    }
+}
