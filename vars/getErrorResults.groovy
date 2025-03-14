@@ -1,6 +1,6 @@
 import org.jenkinsci.plugins.workflow.support.visualization.table.FlowGraphTable
 
-call() {
+void call() {
     def results = getErrorResults().collect {
         "<a href=${it.url}>${it.name}: ${it.error}</a>"
     }.join("\n")
