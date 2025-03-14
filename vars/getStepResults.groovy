@@ -1,3 +1,4 @@
+import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 import org.jenkinsci.plugins.workflow.support.visualization.table.FlowGraphTable
 
 List<Map> call() {
@@ -7,7 +8,11 @@ List<Map> call() {
 
 List<Map> getStepResults() {
     def result = []
-    FlowGraphTable t = new FlowGraphTable(currentBuild().execution)
+
+    RunWrapper build = currentBuild
+
+
+    FlowGraphTable t = new FlowGraphTable(build.rawBuild.execution)
     t.build()
     for (def row in t.rows) {
         if (row.node.error) {
