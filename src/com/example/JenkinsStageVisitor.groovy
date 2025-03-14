@@ -53,7 +53,7 @@ class JenkinsStageVisitor {
 
     List<Map> getStepResults() {
         def result = []
-        def build = currentBuild.getRawBuild()
+        def build = currentBuild().getRawBuild()
         def execution = build.getExecution()
         FlowGraphTable t = new FlowGraphTable(execution)
         t.build()
