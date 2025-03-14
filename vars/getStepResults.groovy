@@ -1,3 +1,4 @@
+import org.jenkinsci.plugins.workflow.graph.FlowGraphWalker
 import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 import org.jenkinsci.plugins.workflow.support.visualization.table.FlowGraphTable
 
@@ -11,6 +12,8 @@ List<Map> getStepResults() {
 
     RunWrapper build = currentBuild
 
+
+    FlowGraphWalker walker = new FlowGraphWalker()
 
     FlowGraphTable t = new FlowGraphTable(build.rawBuild.execution)
     t.build()
