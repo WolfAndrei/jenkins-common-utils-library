@@ -1,3 +1,4 @@
+import hudson.model.FreeStyleBuild
 import io.jenkins.blueocean.listeners.NodeDownstreamBuildAction
 import org.jenkinsci.plugins.workflow.support.actions.LogStorageAction
 import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
@@ -27,8 +28,9 @@ List<Map> getStepResults(RunWrapper build) {
             }
 
             for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
+                FreeStyleBuild exe = Jenkins.instance.getItemByFullName(entry.key).runner.execution
                 nodeInfo.downstream["${entry.key}-${entry.value}"] = getStepResults(
-                    Jenkins.instance.getItemByFullName(entry.key).getLastBuild().rawBuild.execution
+                    exe
                 )
             }
             result << nodeInfo
