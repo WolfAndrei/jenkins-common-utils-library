@@ -1,4 +1,4 @@
-@Library('jenkins-common-utils-library') _
+@Library('jenkins-common-utils-library')_
 
 // import com.example.JenkinsStageVisitor
 
