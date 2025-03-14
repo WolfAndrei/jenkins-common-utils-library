@@ -16,37 +16,37 @@ List<Map> call() {
 List<Map> getStepResults() {
     def result = []
 
-    FlowGraphWalker walker = new FlowGraphWalker(currentBuild.build.rawBuild.execution)
+    FlowGraphWalker walker = new FlowGraphWalker(currentBuild.rawBuild.execution)
 
     walker.iterator().forEachRemaining {
         println(it.displayName)
         println(it.url)
     }
 
-    FlowGraphTable t = new FlowGraphTable()
-    t.build()
-    for (def row in t.rows) {
-
-
-        if (row.node.error) {
-            def nodeInfo = [
-                'name': "${row.node.displayName}",
-                'url': "${env.JENKINS_URL}${row.node.url}",
-                'error': "${row.node.error.error}",
-                'downstream': [:]
-            ]
-
-            if (row.node.getAction(LogStorageAction)) {
-                nodeInfo.url += 'log/'
-            }
-
-//            for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
-//                Run<?, ?> run = Jenkins.instance.getItemByFullName(entry.key).getLastBuild()
-//                 nodeInfo.downstream["${entry.key}-${entry.value}"] =""
+//    FlowGraphTable t = new FlowGraphTable()
+//    t.build()
+//    for (def row in t.rows) {
+//
+//
+//        if (row.node.error) {
+//            def nodeInfo = [
+//                'name': "${row.node.displayName}",
+//                'url': "${env.JENKINS_URL}${row.node.url}",
+//                'error': "${row.node.error.error}",
+//                'downstream': [:]
+//            ]
+//
+//            if (row.node.getAction(LogStorageAction)) {
+//                nodeInfo.url += 'log/'
 //            }
-            result << nodeInfo
-        }
-    }
+//
+////            for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
+////                Run<?, ?> run = Jenkins.instance.getItemByFullName(entry.key).getLastBuild()
+////                 nodeInfo.downstream["${entry.key}-${entry.value}"] =""
+////            }
+//            result << nodeInfo
+//        }
+//    }
     return result
 }
 
