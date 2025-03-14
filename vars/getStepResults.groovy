@@ -29,6 +29,7 @@ List<Map> getStepResults() {
             }
 
             for (def entry in getDownStreamJobAndBuildNumber(row.node)) {
+                echo "${Jenkins.instance.getItemByFullName(entry.key).getLastBuild().displayName}"
                 nodeInfo.downstream["${entry.key}-${entry.value}"] = getStepResults(entry.key, entry.value)
             }
             result << nodeInfo
@@ -39,7 +40,6 @@ List<Map> getStepResults() {
 
 Map getDownStreamJobAndBuildNumber(def node) {
     Map downStreamJobsAndBuilds = [:]
-    NodeDownstreamBuildAction
     for (def action in node.getActions(NodeDownstreamBuildAction)) {
         def result = (action.link =~ /.*\/(?!\/)(.*)\/runs\/(.*)\//).findAll()
         if (result) {
