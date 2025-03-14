@@ -2,6 +2,7 @@ package com.example
 
 
 import org.jenkinsci.plugins.workflow.job.WorkflowRun
+import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 import org.jenkinsci.plugins.workflow.support.visualization.table.FlowGraphTable
 
 class JenkinsStageVisitor {
@@ -48,6 +49,10 @@ class JenkinsStageVisitor {
 //        return getStageResults(build).findAll { it.result == 'FAILURE' }
 //    }
 
+
+    List<Map> getFailedStages(RunWrapper build ) {
+        return getStepResults( build ).findAll{ it.result == 'FAILURE' }
+    }
 
     List<Map> getStepResults(WorkflowRun build) {
         def result = []
