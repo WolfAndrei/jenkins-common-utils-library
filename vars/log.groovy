@@ -1,6 +1,6 @@
 import org.jenkinsci.plugins.workflow.support.visualization.table.FlowGraphTable
 
-def catchErrors() {
+void catchErrors() {
     errorsInfo = prepareErrorsInfo()
 
     if (currentBuild.description == null || currentBuild.description == "null") {
