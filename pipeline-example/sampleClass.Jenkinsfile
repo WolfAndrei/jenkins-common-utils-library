@@ -1,6 +1,6 @@
-@Library('jenkins-common-utils-library')
-
-import com.ncloudtech.jenkins.Logger
+// @Library('jenkins-common-utils-library')
+//
+// import library('jenkins-common-utils-library')com.ncloudtech.jenkins.Logger
 
 pipeline {
     agent any
@@ -28,7 +28,7 @@ pipeline {
     post {
         failure {
             script {
-                Logger.catchErrors(currentBuild, env)
+            library('jenkins-common-utils-library')com.ncloudtech.jenkins.Logger.catchErrors(currentBuild, env)
             }
         }
     }
