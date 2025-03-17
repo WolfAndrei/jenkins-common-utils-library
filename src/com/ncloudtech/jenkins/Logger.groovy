@@ -5,7 +5,7 @@ import org.jenkinsci.plugins.workflow.support.visualization.table.FlowGraphTable
 
 class Logger {
     static void catchErrors(RunWrapper currentBuild) {
-        def errorsInfo = prepareErrorsInfo()
+        def errorsInfo = prepareErrorsInfo(currentBuild)
 
         if (currentBuild.description == null || currentBuild.description == "null") {
             currentBuild.description = errorsInfo
@@ -14,13 +14,13 @@ class Logger {
         }
     }
 
-    private String prepareErrorsInfo() {
-        return "Build errors:<br>" + collectErrors().collect {
+    private static String prepareErrorsInfo(RunWrapper currentBuild) {
+        return "Build errors:<br>" + collectErrors(currentBuild).collect {
             """<a href="${it.url}">${it.name}: ${it.error}</a>"""
         }.join("<br>")
     }
 
-    private List<Map> collectErrors() {
+    private static List<Map> collectErrors(RunWrapper currentBuild) {
         def result = []
 
         FlowGraphTable t = new FlowGraphTable(currentBuild.rawBuild.execution)
