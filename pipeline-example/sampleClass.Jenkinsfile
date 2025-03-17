@@ -1,4 +1,6 @@
-@Library('jenkins-common-utils-library')_
+@Library('jenkins-common-utils-library') _
+
+import com.ncloudtech.jenkins.Logger
 
 pipeline {
     agent any
@@ -26,7 +28,7 @@ pipeline {
     post {
         failure {
             script {
-                log.catchErrors
+                Logger.catchErrors(currentBuild)
             }
         }
     }
