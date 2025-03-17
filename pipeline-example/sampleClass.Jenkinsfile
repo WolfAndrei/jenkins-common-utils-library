@@ -1,6 +1,6 @@
 @Library('jenkins-common-utils-library') _
 
-import com.ncloudtech.jenkins.Logger
+// import com.ncloudtech.jenkins.Logger
 
 pipeline {
     agent any

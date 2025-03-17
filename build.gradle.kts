@@ -18,41 +18,14 @@ sourceSets {
 //    }
 }
 
-repositories {
-//    jcenter()
-    mavenCentral()
-    maven {
-        url = uri("https://repo.jenkins-ci.org/releases/")
-    }
-}
-
 dependencies {
-//    implementation("org.jenkins-ci.plugins.workflow:workflow-job:1505.vea_4b_20a_4a_495@jar")
-    implementation("org.codehaus.groovy:groovy-all:2.5.8")
-//    implementation("org.apache.ivy:ivy:2.4.0")
-    implementation("org.jenkins-ci.plugins.workflow:workflow-cps:4043.va_fb_de6a_a_8b_f5@jar")
-    implementation("org.jenkins-ci.main:jenkins-core:2.500")
-    implementation("org.jenkins-ci.plugins.workflow:workflow-support:961.v51869f7b_d409@jar")
-    implementation("org.jenkins-ci.plugins.workflow:workflow-api:1363.v03f731255494@jar")
-    implementation("org.jenkins-ci.plugins.workflow:workflow-job:1505.vea_4b_20a_4a_495@jar")
-
-
-    implementation("io.jenkins.blueocean:blueocean-pipeline-api-impl:1.27.17@jar")
-    implementation("io.jenkins.blueocean:blueocean-rest-impl:1.27.17@jar")
-    implementation("io.jenkins.blueocean:blueocean-rest:1.27.17@jar")
-    implementation("org.jenkins-ci.plugins.workflow:workflow-step-api:2.19@jar")
-    implementation("org.jenkins-ci.plugins:pipeline-utility-steps:2.2.0@jar")
-//
-//    implementation(platform("io.jenkins.tools.bom:bom-2.462.x:3435.v238d66a_043fb_"))
-//    implementation(platform("io.jenkins.tools.bom:bom-2.462.x:3435.v238d66a_043fb_"))
-//    implementation("io.jenkins.tools.bom:bom-2.479.x:4228.v0a_71308d905b_")
-//    val staplerGAV = "org.kohsuke.stapler:stapler:1.255"
-//    implementation(staplerGAV)
-//    annotationProcessor(staplerGAV)
-//    testImplementation("org.spockframework:spock-core:1.3-groovy-2.5")
-//    testImplementation("junit:junit:4.12")
-//    testImplementation("com.lesfurets:jenkins-pipeline-unit:1.1")
+    implementation(libs.groovy)
+    implementation(libs.jenkins.workflow.cps.jar)
+    implementation(libs.jenkins.workflow.suport.jar)
 }
+
+val Provider<MinimalExternalModuleDependency>.jar: String
+    get() = "${get().toString()}@jar"
 
 //test {
 //  dependsOn cleanTest

@@ -9,11 +9,18 @@
 
 rootProject.name = "jsl-example"
 
-pluginManagement {
-    repositories {
-        mavenCentral()
-        maven {
-            url = uri("https://repo.jenkins-ci.org/releases/")
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            from(files("./libs.versions.toml"))
+
+            @Suppress("UnstableApiUsage")
+            repositories {
+                mavenCentral()
+                maven {
+                    url = uri("https://repo.jenkins-ci.org/releases/")
+                }
+            }
         }
     }
 }

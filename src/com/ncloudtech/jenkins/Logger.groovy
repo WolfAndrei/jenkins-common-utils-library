@@ -1,6 +1,5 @@
 package com.ncloudtech.jenkins
 
-import hudson.model.Environment
 import org.jenkinsci.plugins.workflow.cps.EnvActionImpl
 import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 import org.jenkinsci.plugins.workflow.support.visualization.table.FlowGraphTable
