@@ -28,7 +28,7 @@ pipeline {
     post {
         failure {
             script {
-                Logger.catchErrors(currentBuild)
+                Logger.catchErrors(currentBuild, env)
             }
         }
     }
