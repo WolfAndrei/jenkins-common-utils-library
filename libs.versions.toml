@@ -7,8 +7,3 @@ workflowSupport = "961.v51869f7b_d409"
 groovy = { group = "org.codehaus.groovy", name = "groovy-all", version.ref = "groovy" }
 jenkins-workflow-cps = { group = "org.jenkins-ci.plugins.workflow", name = "workflow-cps", version.ref = "workflowCps" }
 jenkins-workflow-suport = { group = "org.jenkins-ci.plugins.workflow", name = "workflow-support", version.ref = "workflowSupport" }
-
-
-#implementation("org.codehaus.groovy:groovy-all:2.5.8")
-#implementation("org.jenkins-ci.plugins.workflow:workflow-cps:4043.va_fb_de6a_a_8b_f5@jar")
-#implementation("org.jenkins-ci.plugins.workflow:workflow-support:961.v51869f7b_d409@jar")

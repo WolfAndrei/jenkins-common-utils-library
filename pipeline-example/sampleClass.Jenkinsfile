@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) New Cloud Technologies, Ltd., 2013-2025
+ *
+ * You can not use the contents of the file in any way without New Cloud Technologies, Ltd. written permission.
+ * To obtain such a permit, you should contact New Cloud Technologies, Ltd. at https://myoffice.ru/contacts/
+ *
+ */
+
 @Library('jenkins-common-utils-library')
 
 import com.ncloudtech.jenkins.Logger
@@ -28,7 +36,7 @@ pipeline {
     post {
         failure {
             script {
-                Logger.catchErrors(currentBuild, env)
+                Logger.catchErrors(this)
             }
         }
     }
