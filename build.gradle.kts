@@ -30,7 +30,7 @@ dependencies {
 //    implementation("org.jenkins-ci.plugins.workflow:workflow-job:1505.vea_4b_20a_4a_495@jar")
     implementation("org.codehaus.groovy:groovy-all:2.5.8")
 //    implementation("org.apache.ivy:ivy:2.4.0")
-    implementation("org.jenkins-ci.plugins.workflow:workflow-cps:4043.va_fb_de6a_a_8b_f5")
+    implementation("org.jenkins-ci.plugins.workflow:workflow-cps:4043.va_fb_de6a_a_8b_f5@jar")
     implementation("org.jenkins-ci.main:jenkins-core:2.500")
     implementation("org.jenkins-ci.plugins.workflow:workflow-support:961.v51869f7b_d409@jar")
     implementation("org.jenkins-ci.plugins.workflow:workflow-api:1363.v03f731255494@jar")

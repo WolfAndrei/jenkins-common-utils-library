@@ -1,11 +1,12 @@
 package com.ncloudtech.jenkins
 
 import hudson.model.Environment
+import org.jenkinsci.plugins.workflow.cps.EnvActionImpl
 import org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper
 import org.jenkinsci.plugins.workflow.support.visualization.table.FlowGraphTable
 
 class Logger {
-    static void catchErrors(RunWrapper currentBuild, Environment env) {
+    static void catchErrors(RunWrapper currentBuild, EnvActionImpl env) {
         def errorsInfo = prepareErrorsInfo(currentBuild, env)
 
         if (currentBuild.description == null || currentBuild.description == "null") {
@@ -15,13 +16,13 @@ class Logger {
         }
     }
 
-    private static String prepareErrorsInfo(RunWrapper currentBuild, Environment env) {
+    private static String prepareErrorsInfo(RunWrapper currentBuild, EnvActionImpl env) {
         return "Build errors:<br>" + collectErrors(currentBuild, env).collect {
             """<a href="${it.url}">${it.name}: ${it.error}</a>"""
         }.join("<br>")
     }
 
-    private static List<Map> collectErrors(RunWrapper currentBuild, Environment env) {
+    private static List<Map> collectErrors(RunWrapper currentBuild, EnvActionImpl env) {
         def result = []
 
         FlowGraphTable t = new FlowGraphTable(currentBuild.rawBuild.execution)
