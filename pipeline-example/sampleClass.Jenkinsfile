@@ -1,4 +1,4 @@
-@Library('jenkins-common-utils-library@master')
+@Library('jenkins-common-utils-library')
 
 import com.ncloudtech.jenkins.Logger
 
