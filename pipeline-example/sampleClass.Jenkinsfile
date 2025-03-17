@@ -26,7 +26,7 @@ pipeline {
     post {
         failure {
             script {
-                trackErrors()
+                log.catchErrors()
             }
         }
     }

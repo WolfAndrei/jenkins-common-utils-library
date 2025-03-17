@@ -1,10 +1,7 @@
 plugins {
-    // Apply the groovy Plugin to add support for Groovy.
     groovy
 }
 
-
-// follow the structure as dictated by Jenkins:
 sourceSets {
     main {
         groovy {
